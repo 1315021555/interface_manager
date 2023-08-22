@@ -14,11 +14,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json());  // 用于解析json格式的post请求
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// 路由
 app.use('/', indexRouter);  // 默认访问indexRouter
 app.use('/users', usersRouter);  
 
