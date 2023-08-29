@@ -6,6 +6,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var interfaceRouter = require('./routes/interface');
+var projectsRouter = require('./routes/projects');
+var ProjectParticipation = require('./routes/project_participations');
+var swaggerRouter = require('./routes/swagger');
+
 
 var app = express();
 
@@ -23,6 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 路由
 app.use('/', indexRouter);  // 默认访问indexRouter
 app.use('/users', usersRouter);  
+app.use('/interface', interfaceRouter);  // 访问interfaceRouter
+app.use('/projects', projectsRouter);
+app.use('/project_participations', ProjectParticipation);
+app.use('/swagger',swaggerRouter)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

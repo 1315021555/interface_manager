@@ -14,7 +14,11 @@ userHandler.login = (username,password)=>{
     return execSQL(sql)
 }
 
-
+//查询用户参与项目
+userHandler.list = (project_id)=>{
+    let sql = `select * from project where project_id=${project_id}`;
+    return execSQL(sql);
+}
 
 
 

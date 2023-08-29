@@ -10,11 +10,11 @@ const jwt = require('jsonwebtoken') //用来生成token
 const expressJWT = require('express-jwt') //用来验证token
 
 // JWT 2：定义secret密钥
-const secretKey = 'zzz'
+const JWT_Key = require('../config/secretKey')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('users page default');
+    res.send('users page default');
 });
 
 // 注册
@@ -27,11 +27,10 @@ router.post('/register',function(req,res,next){
         }
         else{
             userHandler.register(req.body.username,req.body.password).then(()=>{
-              res.send(new SuccessModel('注册成功！'))
+                res.send(new SuccessModel('注册成功！'))
             })
         }
     })
-  
 })
 
 
@@ -47,16 +46,35 @@ router.post('/login',(req,res)=>{
             // JWT 3：生成token
             const token = jwt.sign(
                 {username:username}, //payload
-                secretKey, //密钥
+                JWT_Key, //密钥
                 {expiresIn:60*60*24} //过期时间
             )
-            res.send(new SuccessModel({token:token},'login success'));
+            // 获取user_id
+            let sql = `select user_id from user where user_name = '${username}'`;
+            execSQL(sql).then(data=>{
+                const user_id = data[0].user_id;
+                res.send(new SuccessModel({token:token,user_id:user_id},'登陆成功'));
+            })
         }else{
             res.send(new ErrorModel('账号或密码错误'));
         }
     })
+})
 
-  
+
+//查询用户参与项目
+router.get('/projectList',(req,res)=>{
+    const {user_id} = req.query;
+    let sql = `select * from project_participation where user_id = ${user_id}`;
+    execSQL(sql).then(data=>{
+        const {project_id}= data[0];
+        userHandler.list(project_id).then(listdata=>{
+            res.send(new SuccessModel(listdata,'查询成功'));
+        })
+    }).catch(err=>{
+        console.log(err);
+        res.send(new ErrorModel(err,'查询失败'))
+    })
 })
 
 

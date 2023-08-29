@@ -5,7 +5,13 @@ const {MYSQL_CONFIG} = require('../config/db')
 const con = mysql.createConnection(MYSQL_CONFIG);
 
 // 开始连接
-con.connect();
+con.connect(err=>{
+    if (err){
+        console.log('数据库连接失败',err);
+        return  
+    }
+    console.log('数据库连接成功');
+})
 
 
 // 写成promise形式，方便使用，避免回调地狱

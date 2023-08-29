@@ -1,0 +1,167 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HTTP接口管理项目",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "用户"
+    },
+    {
+      "name": "项目"
+    }
+  ],
+  "paths": {
+    "/users/login": {
+      "post": {
+        "summary": "登录",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "username",
+                  "password"
+                ],
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "username": "zzc",
+                "password": "123456"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3177154/apis/api-104190845-run"
+      }
+    },
+    "/users/register": {
+      "post": {
+        "summary": "注册",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3177154/apis/api-104214089-run"
+      }
+    },
+    "/project/create": {
+      "post": {
+        "summary": "创建项目",
+        "x-apifox-folder": "项目",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "项目"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "username"
+                ],
+                "required": [
+                  "username"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "username": "z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [
+                    "01H8E92JW61TCD7NXA32W41WPY"
+                  ],
+                  "required": [
+                    "01H8E92JW61TCD7NXA32W41WPY"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3177154/apis/api-104872202-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
